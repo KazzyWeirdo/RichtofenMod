@@ -86,6 +86,6 @@ RichtofenModProject/Assets/ThunderKitSettings/ThunderKit Extensions.asset
 RichtofenModProject/ThunderKit/
 
 #Ensures mod dependencies such as R2API and others are not explicitly added to the github repository to avoid unecesary redistribution
-SS2-Project/Packages/*
-!SS2-Project/Packages/packages-lock.json
-!SS2-Project/Packages/manifest.json
+RichtofenModProject/Packages/*
+!RichtofenModProject/Packages/packages-lock.json
+!RichtofenModProject/Packages/manifest.json
