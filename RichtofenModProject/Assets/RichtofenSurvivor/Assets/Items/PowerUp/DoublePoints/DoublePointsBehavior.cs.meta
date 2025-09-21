@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a5bd3fb8740ca514d83a522e2d3be85c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - body: {instanceID: 0}
+  - doublePointsDef: {fileID: 11400000, guid: 9a0b90ec3af8f6d4d80a4f568a457f88, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

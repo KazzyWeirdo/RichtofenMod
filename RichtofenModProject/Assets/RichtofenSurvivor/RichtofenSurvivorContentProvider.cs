@@ -9,7 +9,10 @@ namespace RichtofenSurvivor
         public string identifier => RichtofenSurvivorMain.GUID;
 
         public static ReadOnlyContentPack readOnlyContentPack => new ReadOnlyContentPack(RichtofenSurvivorContentPack);
-        internal static ContentPack RichtofenSurvivorContentPack { get; } = new ContentPack();
+        public static ContentPack RichtofenSurvivorContentPack { get; } = new ContentPack();
+
+        private static ItemTierDef powerUpTier;
+        private static AssetBundle _myBundle;
 
         public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args)
         {
@@ -21,6 +24,10 @@ namespace RichtofenSurvivor
             }
 
             //Write code here to initialize your mod post assetbundle load
+            _myBundle = asyncOperation.assetBundle;
+            powerUpTier = _myBundle.LoadAsset<ItemTierDef>("PowerUpTier");
+
+            RichtofenSurvivorContentPack.itemTierDefs.Add(new ItemTierDef[] { powerUpTier });
         }
         public IEnumerator GenerateContentPackAsync(GetContentPackAsyncArgs args)
         {
