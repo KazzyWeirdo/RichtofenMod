@@ -89,3 +89,6 @@ RichtofenModProject/ThunderKit/
 RichtofenModProject/Packages/*
 !RichtofenModProject/Packages/packages-lock.json
 !RichtofenModProject/Packages/manifest.json
+RichtofenModProject/Assets/ThunderKitSettings/ThunderKitSettings.asset
+RichtofenModProject/Assets/ThunderKitSettings/ThunderKit Extensions.asset.meta
+RichtofenModProject/ProjectSettings/RoR2EditorKit/VisualElementTemplateDictionary.asset
