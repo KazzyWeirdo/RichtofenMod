@@ -151,6 +151,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "riskofthunder-ror2importextensions": {
+      "version": "https://github.com/risk-of-thunder/RoR2ImportExtensions.git#1.7.1",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b8704d045fd4c32e83778bf3e1792d6e0cf76e00"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
