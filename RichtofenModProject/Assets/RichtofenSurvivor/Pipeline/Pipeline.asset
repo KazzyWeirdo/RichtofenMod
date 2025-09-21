@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: Copy
   m_EditorClassIdentifier: 
   Active: 1
-  PerManifest: 0
+  PerManifest: 1
   ListType: 1
   Manifests:
   - {fileID: 11400000, guid: bc4f9d50be1f93649b28b5ac84d5859c, type: 2}

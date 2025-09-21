@@ -19,7 +19,7 @@ namespace RichtofenSurvivor
     [BepInPlugin(GUID, MODNAME, VERSION)]
     public class RichtofenSurvivorMain : BaseUnityPlugin
     {
-        public const string GUID = "com.Kazzy_Weirdo & Natani.RichtofenSurvivor";
+        public const string GUID = "com.Kazzy_Weirdo-Natani.RichtofenSurvivor";
         public const string MODNAME = "Richtofen Survivor";
         public const string VERSION = "0.0.1";
 
