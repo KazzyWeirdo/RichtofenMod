@@ -73,3 +73,19 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 [Aa]ssets/[Ss]treamingAssets/aa.meta
 [Aa]ssets/[Ss]treamingAssets/aa/*
+
+#Ensures RoR2 assemblies are not redistributed accidentally
+RichtofenModProject/[Pp]ackages/[Rr]isk of Rain 2/*.dll
+RichtofenModProject/[Pp]ackages/[Rr]isk of Rain 2/[Pp]lugins/*.dll
+
+#Client side only thunderkit related files.
+RichtofenModProject/Assets/ThunderKitSettings/EditorInspectorSettings.asset
+RichtofenModProject/Assets/ThunderKitSettings/RoR2.asset
+RichtofenModProject/Assets/ThunderKitSettings/Logs/*
+RichtofenModProject/Assets/ThunderKitSettings/ThunderKit Extensions.asset
+RichtofenModProject/ThunderKit/
+
+#Ensures mod dependencies such as R2API and others are not explicitly added to the github repository to avoid unecesary redistribution
+SS2-Project/Packages/*
+!SS2-Project/Packages/packages-lock.json
+!SS2-Project/Packages/manifest.json
