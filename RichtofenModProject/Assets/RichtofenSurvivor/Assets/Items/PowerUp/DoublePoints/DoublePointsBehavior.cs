@@ -1,55 +1,44 @@
 using RoR2;
-using BepInEx;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using R2API;
 using RichtofenSurvivor;
 
 namespace DoublePoints
 {
 
-    public static class DoublePointsBehavior
+    public class DoublePointsBehavior : PowerUpBehaviour
     {
         private static ItemDef doublePointsDef;
+        private static BuffDef doublePointsBuffDef;
 
         public static void RegisterHooks()
         {
             doublePointsDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem");
+            doublePointsBuffDef = RichtofenSurvivorContent.readOnlyContentPack.buffDefs.Find("DoublePointBuff");
 
-            GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+            PowerUpBehaviour.RegisterMainHooks(doublePointsDef);
             On.RoR2.CharacterMaster.GiveMoney += GiveMoneyHook;
-        }
+            On.RoR2.CharacterBody.OnInventoryChanged += OnInventoryChangedHook;
 
-        private static void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
-        {
-            // If a character was killed by the world, we shouldn't do anything.
-            if (!report.attacker || !report.attackerBody)
-            {
-                return;
-            }
-
-            var transform = report.victimBody.master.GetBodyObject().transform;
-
-            if (Util.CheckRoll(100, report.victimBody.master))
-            {
-                PickupDropletController.CreatePickupDroplet(
-                    PickupCatalog.FindPickupIndex(doublePointsDef.itemIndex),
-                    transform.position,
-                    transform.forward * 20f);
-            }
         }
 
         private static void GiveMoneyHook(On.RoR2.CharacterMaster.orig_GiveMoney orig, CharacterMaster self, uint amount)
+        {
+            if (self.hasBody && self.GetBody().HasBuff(doublePointsBuffDef))
+            {
+                amount *= 2;
+            }
+            orig(self, amount);
+        }
+
+        private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             var count = self.inventory.GetItemCount(doublePointsDef);
 
             if (count > 0)
             {
-                amount *= 2;
+                self.AddTimedBuff(doublePointsBuffDef, 30);
+                self.inventory.RemoveItem(doublePointsDef);
             }
-            orig(self, amount);
+            orig(self);
         }
     }
 

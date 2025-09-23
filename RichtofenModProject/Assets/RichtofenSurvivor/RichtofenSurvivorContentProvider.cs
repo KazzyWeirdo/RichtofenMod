@@ -15,6 +15,7 @@ namespace RichtofenSurvivor
 
         private static ItemTierDef powerUpTier;
         private static ItemDef doublePointsDef;
+        private static BuffDef doublePointsBuffDef;
         private static AssetBundle _myBundle;
 
         public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args)
@@ -29,9 +30,11 @@ namespace RichtofenSurvivor
             //Write code here to initialize your mod post assetbundle load
             _myBundle = asyncOperation.assetBundle;
             powerUpTier = _myBundle.LoadAsset<ItemTierDef>("PowerUpTier");
+            doublePointsBuffDef = _myBundle.LoadAsset<BuffDef>("DoublePointBuff");
             doublePointsDef = _myBundle.LoadAsset<ItemDef>("DoublePointsItem");
 
             RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { doublePointsDef });
+            RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { doublePointsBuffDef });
             RichtofenSurvivorContentPack.itemTierDefs.Add(new ItemTierDef[] { powerUpTier });
         }
         public IEnumerator GenerateContentPackAsync(GetContentPackAsyncArgs args)
