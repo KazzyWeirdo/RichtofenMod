@@ -19,7 +19,6 @@ namespace DoublePoints
             doublePointsDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem");
 
             GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
-            CharacterMaster.GiveMoney += GiveMoneyHook;
         }
 
         private static void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
@@ -39,22 +38,6 @@ namespace DoublePoints
                     transform.position,
                     transform.forward * 20f);
             }
-        }
-
-        private static void GiveMoneyHook(CharacterMaster.orig_GiveMoney orig, CharacterMaster self, uint amount)
-        {
-            // Comprobamos si el jugador tiene nuestro ítem
-            int count = self.inventory?.GetItemCount(doublePointsDef) ?? 0;
-
-            if (count > 0)
-            {
-                // Duplicamos el dinero base por cada stack
-                amount *= (uint)(2 * count);
-                Debug.Log($"[RichtofenSurvivor] Dando dinero multiplicado x{2 * count}: {amount}");
-            }
-
-            // Llamamos a la función original con el valor modificado
-            orig(self, amount);
         }
     }
 
