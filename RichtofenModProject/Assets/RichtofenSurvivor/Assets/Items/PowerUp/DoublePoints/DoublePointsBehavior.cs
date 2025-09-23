@@ -19,6 +19,7 @@ namespace DoublePoints
             doublePointsDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem");
 
             GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+            On.RoR2.CharacterMaster.GiveMoney += GiveMoneyHook;
         }
 
         private static void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
@@ -38,6 +39,17 @@ namespace DoublePoints
                     transform.position,
                     transform.forward * 20f);
             }
+        }
+
+        private static void GiveMoneyHook(On.RoR2.CharacterMaster.orig_GiveMoney orig, CharacterMaster self, uint amount)
+        {
+            var count = self.inventory.GetItemCount(doublePointsDef);
+
+            if (count > 0)
+            {
+                amount *= 2;
+            }
+            orig(self, amount);
         }
     }
 

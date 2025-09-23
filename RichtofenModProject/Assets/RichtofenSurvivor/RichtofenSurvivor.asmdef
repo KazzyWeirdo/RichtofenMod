@@ -1,12 +1,12 @@
 {
     "name": "RichtofenSurvivor",
+    "rootNamespace": "",
     "references": [
         "GUID:a44f47cf3ada4435dbc516bad0bc86fe",
         "GUID:2bafac87e7f4b9b418d9448d219b01ab",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:d60799ab2a985554ea1a39cd38695018"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -73,8 +73,12 @@
         "R2API.Rules.dll",
         "R2API.TempVisualEffect.dll",
         "R2API.Teams.dll",
-        "R2API.LobbyConfig.dll"
+        "R2API.LobbyConfig.dll",
+        "MMHOOK_RoR2.dll",
+        "MMHOOK_KinematicCharacterController.dll"
     ],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

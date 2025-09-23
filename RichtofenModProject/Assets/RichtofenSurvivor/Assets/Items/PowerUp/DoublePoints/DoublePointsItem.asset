@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deprecatedTier: 1
   _itemTierDef: {fileID: 0}
-  nameToken: DoublePoints
-  pickupToken: Double Points
+  nameToken: Double Points
+  pickupToken: Doubles the money from fallen enemies for 30 seconds.
   descriptionToken: Doubles the money from fallen enemies for 30 seconds.
   loreToken: 
   unlockableDef: {fileID: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
     m_SubObjectType: 
   pickupIconSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   isConsumed: 0
-  hidden: 0
+  hidden: 1
   canRemove: 1
   tags: 
   requiredExpansion: {fileID: 0}
