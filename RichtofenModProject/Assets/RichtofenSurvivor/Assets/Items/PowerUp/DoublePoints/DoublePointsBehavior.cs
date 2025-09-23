@@ -6,35 +6,23 @@ using UnityEngine;
 using System;
 using R2API;
 using RichtofenSurvivor;
-using RoR2.ContentManagement;
 
 namespace DoublePoints
 {
-    [BepInDependency(ItemAPI.PluginGUID)]
 
-    public class DoublePointsBehavior : BaseUnityPlugin
+    public static class DoublePointsBehavior
     {
-        public ItemDef doublePointsDef;
-        private static AssetBundle _myBundle;
+        private static ItemDef doublePointsDef;
 
-        private void Awake()
+        public static void RegisterHooks()
         {
-            var asyncOperation = AssetBundle.LoadFromFileAsync(RichtofenSurvivorMain.assetBundleDir);
-            
-            _myBundle = asyncOperation.assetBundle;
-            doublePointsDef = _myBundle.LoadAsset<ItemDef>("DoublePointsItem");
-
-           RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { doublePointsDef });
-
-            ContentManager.collectContentPackProviders += addContentPackProvider =>
-            {
-                addContentPackProvider(new RichtofenSurvivorContent());
-            };
+            doublePointsDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem");
 
             GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
+            CharacterMaster.GiveMoney += GiveMoneyHook;
         }
 
-        private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
+        private static void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
         {
             // If a character was killed by the world, we shouldn't do anything.
             if (!report.attacker || !report.attackerBody)
@@ -53,9 +41,20 @@ namespace DoublePoints
             }
         }
 
-        private void Update()
+        private static void GiveMoneyHook(CharacterMaster.orig_GiveMoney orig, CharacterMaster self, uint amount)
         {
+            // Comprobamos si el jugador tiene nuestro ítem
+            int count = self.inventory?.GetItemCount(doublePointsDef) ?? 0;
 
+            if (count > 0)
+            {
+                // Duplicamos el dinero base por cada stack
+                amount *= (uint)(2 * count);
+                Debug.Log($"[RichtofenSurvivor] Dando dinero multiplicado x{2 * count}: {amount}");
+            }
+
+            // Llamamos a la función original con el valor modificado
+            orig(self, amount);
         }
     }
 
