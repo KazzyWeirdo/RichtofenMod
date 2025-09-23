@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: sdRichtofenSpecial
   m_EditorClassIdentifier: 
   skillName: sdRichtofenSpecial
-  skillNameToken: EN_RICHTOFEN_SPECIAL_NAME
-  skillDescriptionToken: EN_RICHTOFEN_SPECIAL_DESC
+  skillNameToken: RICH_RICHTOFEN_SPECIAL_NAME
+  skillDescriptionToken: RICH_RICHTOFEN_SPECIAL_DESC
   keywordTokens: []
   icon: {fileID: 0}
   activationStateMachineName: Body

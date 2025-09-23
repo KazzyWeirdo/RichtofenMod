@@ -13,30 +13,30 @@ TagManager:
   - UI
   - 
   - 
+  - FakeActor
+  - NoCollision
+  - Pickups
+  - World
+  - EntityPrecise
+  - Debris
+  - Projectile
+  - CollideWithChara
+  - ManualRender
+  - Ragdoll
+  - NoDraw
+  - PrefabBrush
+  - PostProcess
+  - UI, WorldSpace
+  - PlayerBody
+  - EnemyBody
+  - TriggerZone
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnemyBarrier
+  - PlayerFakeActor
   m_SortingLayers:
   - name: Default
     uniqueID: 0

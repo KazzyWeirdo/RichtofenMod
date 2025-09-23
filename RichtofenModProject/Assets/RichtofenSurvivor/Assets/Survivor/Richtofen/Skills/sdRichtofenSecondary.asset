@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sdRichtofenSecondary
   m_EditorClassIdentifier: 
   skillName: sdRichtofenSecondary
-  skillNameToken: EN_RICHTOFEN_SECONDARY_NAME
-  skillDescriptionToken: EN_RICHTOFEN_SECONDARY_DESC
+  skillNameToken: RICH_RICHTOFEN_SECONDARY_NAME
+  skillDescriptionToken: RICH_RICHTOFEN_SECONDARY_DESC
   keywordTokens: []
-  icon: {fileID: 0}
-  activationStateMachineName: Body
+  icon: {fileID: 21300000, guid: 7efb0c9c467be0142a6cebedb5225268, type: 3}
+  activationStateMachineName: Weapon
   activationState:
-    _typeName: EntityStates.Uninitialized, RoR2, Version=0.0.0.0, Culture=neutral,
+    _typeName: EntityStates.BasicMeleeAttack, RoR2, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   interruptPriority: 1
   baseRechargeInterval: 1
