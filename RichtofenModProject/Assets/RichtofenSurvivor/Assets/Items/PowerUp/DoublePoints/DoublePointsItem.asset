@@ -19,7 +19,7 @@ MonoBehaviour:
   descriptionToken: Doubles the money from fallen enemies for 30 seconds.
   loreToken: 
   unlockableDef: {fileID: 0}
-  pickupModelPrefab: {fileID: 7866509351698859190, guid: 88c4370bd3082424f87c70335cc2fa00, type: 3}
+  pickupModelPrefab: {fileID: 5107536336914789819, guid: 61e99dd0745ea2e4fba86399c8e0fa69, type: 3}
   pickupModelReference:
     m_AssetGUID: 
     m_SubObjectName: 
