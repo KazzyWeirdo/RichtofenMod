@@ -1,6 +1,7 @@
 using RoR2.ContentManagement;
 using UnityEngine;
 using RoR2;
+using RoR2.Skills;
 using System.Collections;
 using RoR2.ExpansionManagement;
 namespace RichtofenSurvivor
@@ -13,7 +14,7 @@ namespace RichtofenSurvivor
         internal static ContentPack RichtofenSurvivorContentPack { get; } = new ContentPack();
 
         private static SurvivorDef _mySurvivor;
-        private static AssetBundle _myBundle;
+        public static AssetBundle _myBundle;
 
         public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args)
         {
@@ -28,10 +29,15 @@ namespace RichtofenSurvivor
             var expansionDef = _myBundle.LoadAsset<ExpansionDef>("RichtofenExpansion");
             //Write code here to initialize your mod post assetbundle load
 
-            RichtofenSurvivorMain.LogInfo("testing rich: " + _mySurvivor.ToString());
+            RichtofenSurvivorMain.LogInfo("testing rich: " + _mySurvivor.ToString() + ", :" + RichtofenSurvivorMain.assetBundleDir);
+
+            RichtofenPrimarySkillDef.RichtofenPrimarySkills();
+            RichtofenUtilitySkillDef.RichtofenUtilitySkills();
+
+            //var _richtofenPrefab = SurvivorDefModify.ModifySurvivorDef();
+            //_mySurvivor.bodyPrefab = _richtofenPrefab;
 
             RichtofenSurvivorContentPack.bodyPrefabs.Add(new GameObject[] { _mySurvivor.bodyPrefab });
-            
             RichtofenSurvivorContentPack.survivorDefs.Add(new SurvivorDef[] { _mySurvivor });
             RichtofenSurvivorContentPack.expansionDefs.Add(new ExpansionDef[] { expansionDef });
 
