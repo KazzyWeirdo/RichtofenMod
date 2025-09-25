@@ -4,7 +4,7 @@ using RichtofenSurvivor;
 namespace DoublePoints
 {
 
-    public class DoublePointsBehavior : PowerUpBehaviour
+    public class DoublePointsBehavior
     {
         private static ItemDef doublePointsDef;
         private static BuffDef doublePointsBuffDef;
@@ -14,7 +14,6 @@ namespace DoublePoints
             doublePointsDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem");
             doublePointsBuffDef = RichtofenSurvivorContent.readOnlyContentPack.buffDefs.Find("DoublePointBuff");
 
-            PowerUpBehaviour.RegisterMainHooks(doublePointsDef);
             On.RoR2.CharacterMaster.GiveMoney += GiveMoneyHook;
             On.RoR2.CharacterBody.OnInventoryChanged += OnInventoryChangedHook;
 

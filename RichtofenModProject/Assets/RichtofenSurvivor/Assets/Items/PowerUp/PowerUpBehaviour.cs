@@ -1,14 +1,21 @@
+using RichtofenSurvivor;
 using RoR2;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PowerUpBehaviour
 {
-    private static ItemDef powerUpItemDef;
-    public static void RegisterMainHooks (ItemDef powerUpItem)
+    public static float probability = 100;
+    public static ItemDef[] powerUpItemDefinitions =
     {
-        powerUpItemDef = powerUpItem;
+        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem"),
+        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("InstantKillItem")
+    };
+    
+    public static void RegisterMainHooks()
+    {
+        DoublePoints.DoublePointsBehavior.RegisterHooks();
+        InstantKill.InstantKillBehaviour.RegisterHooks();
         GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
     }
 
@@ -22,13 +29,20 @@ public class PowerUpBehaviour
 
         var transform = report.victimBody.master.GetBodyObject().transform;
 
-        if (Util.CheckRoll(100, report.victimBody.master))
+        if (Util.CheckRoll(probability, report.victimBody.master))
         {
             PickupDropletController.CreatePickupDroplet(
-                PickupCatalog.FindPickupIndex(powerUpItemDef.itemIndex),
+                PickupCatalog.FindPickupIndex(powerUpDropRandomizer().itemIndex),
                 transform.position,
                 transform.forward * 20f);
         }
+    }
+
+    private static ItemDef powerUpDropRandomizer()
+    {
+        int r = UnityEngine.Random.Range(0, powerUpItemDefinitions.Length);
+        Debug.Log($"Random value: {r}");
+        return powerUpItemDefinitions[(r)];
     }
 
 }

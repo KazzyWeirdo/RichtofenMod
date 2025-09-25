@@ -3,64 +3,67 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class InstantKillBehaviour : PowerUpBehaviour
+namespace InstantKill
 {
-    private static ItemDef instantKillItemDef;
-    private static BuffDef instantKillBuffDef;
-
-    public static void RegisterHooks()
+    public class InstantKillBehaviour
     {
-        instantKillItemDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("InstantKillItem");
-        instantKillBuffDef = RichtofenSurvivorContent.readOnlyContentPack.buffDefs.Find("InstantKillBuff");
+        private static ItemDef instantKillItemDef;
+        private static BuffDef instantKillBuffDef;
 
-        PowerUpBehaviour.RegisterMainHooks(instantKillItemDef);
-        On.RoR2.CharacterBody.OnInventoryChanged += OnInventoryChangedHook;
-        On.RoR2.GlobalEventManager.OnHitEnemy += OnHitEnemyHook;
-
-    }
-
-    private static void OnHitEnemyHook(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damage, GameObject victim)
-    {
-        if (!victim || !damage.attacker) return;
-
-        CharacterBody attackerBody = damage.attacker.GetComponent<CharacterBody>();
-        CharacterBody victimBody = victim.GetComponent<CharacterBody>();
-
-        if (!attackerBody || !victimBody || victimBody.isPlayerControlled) return;
-
-        
-        if (attackerBody.HasBuff(instantKillBuffDef))
+        public static void RegisterHooks()
         {
-            
-            if (NetworkServer.active)
-            {
-                HealthComponent victimHealth = victimBody.healthComponent;
+            instantKillItemDef = RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("InstantKillItem");
+            instantKillBuffDef = RichtofenSurvivorContent.readOnlyContentPack.buffDefs.Find("InstantKillBuff");
 
-                if (victimHealth && victimHealth.alive)
+            On.RoR2.CharacterBody.OnInventoryChanged += OnInventoryChangedHook;
+            On.RoR2.GlobalEventManager.OnHitEnemy += OnHitEnemyHook;
+
+        }
+
+        private static void OnHitEnemyHook(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damage, GameObject victim)
+        {
+            if (!victim || !damage.attacker) return;
+
+            CharacterBody attackerBody = damage.attacker.GetComponent<CharacterBody>();
+            CharacterBody victimBody = victim.GetComponent<CharacterBody>();
+
+            if (!attackerBody || !victimBody || victimBody.isPlayerControlled) return;
+
+
+            if (attackerBody.HasBuff(instantKillBuffDef))
+            {
+
+                if (NetworkServer.active)
                 {
-                    if(victimBody.isBoss || victimBody.isElite)
+                    HealthComponent victimHealth = victimBody.healthComponent;
+
+                    if (victimHealth && victimHealth.alive)
                     {
-                        damage.damage *= 2;
-                    } 
-                    else
-                    {
-                        victimHealth.Suicide(attackerBody.gameObject);
+                        if (victimBody.isBoss || victimBody.isElite)
+                        {
+                            damage.damage *= 2;
+                        }
+                        else
+                        {
+                            victimHealth.Suicide(attackerBody.gameObject);
+                        }
                     }
                 }
             }
+            orig(self, damage, victim);
         }
-        orig(self, damage, victim);
-    }
 
-    private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
-    {
-        var count = self.inventory.GetItemCount(instantKillItemDef);
-
-        if (count > 0)
+        private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            self.AddTimedBuff(instantKillBuffDef, 30);
-            self.inventory.RemoveItem(instantKillItemDef);
+            var count = self.inventory.GetItemCount(instantKillItemDef);
+
+            if (count > 0)
+            {
+                self.AddTimedBuff(instantKillBuffDef, 30);
+                self.inventory.RemoveItem(instantKillItemDef);
+            }
+            orig(self);
         }
-        orig(self);
     }
 }
+

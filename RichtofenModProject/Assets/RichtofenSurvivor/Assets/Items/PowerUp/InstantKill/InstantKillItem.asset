@@ -15,7 +15,7 @@ MonoBehaviour:
   deprecatedTier: 1
   _itemTierDef: {fileID: 11400000, guid: 3fdb3d68d52ae9442bf58deca6af613e, type: 2}
   nameToken: Instant Kill
-  pickupToken: Instant Kill
+  pickupToken: Instantly kill normal mobs. Deal double damage to boss and elites.
   descriptionToken: Instantly kill normal mobs. Deal double damage to boss and elites.
   loreToken: 
   unlockableDef: {fileID: 0}
