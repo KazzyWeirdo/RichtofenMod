@@ -2,7 +2,6 @@ using RoR2.ContentManagement;
 using UnityEngine;
 using RoR2;
 using System.Collections;
-using DoublePoints;
 
 namespace RichtofenSurvivor
 {
@@ -13,10 +12,7 @@ namespace RichtofenSurvivor
         public static ReadOnlyContentPack readOnlyContentPack => new ReadOnlyContentPack(RichtofenSurvivorContentPack);
         public static ContentPack RichtofenSurvivorContentPack { get; } = new ContentPack();
 
-        private static ItemTierDef powerUpTier;
-        private static ItemDef doublePointsDef;
-        private static BuffDef doublePointsBuffDef;
-        private static AssetBundle _myBundle;
+        public static AssetBundle _myBundle;
 
         public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args)
         {
@@ -29,13 +25,7 @@ namespace RichtofenSurvivor
 
             //Write code here to initialize your mod post assetbundle load
             _myBundle = asyncOperation.assetBundle;
-            powerUpTier = _myBundle.LoadAsset<ItemTierDef>("PowerUpTier");
-            doublePointsBuffDef = _myBundle.LoadAsset<BuffDef>("DoublePointBuff");
-            doublePointsDef = _myBundle.LoadAsset<ItemDef>("DoublePointsItem");
-
-            RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { doublePointsDef });
-            RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { doublePointsBuffDef });
-            RichtofenSurvivorContentPack.itemTierDefs.Add(new ItemTierDef[] { powerUpTier });
+            PowerUpAssetLoadUp.loadAssetstoBundle();
         }
         public IEnumerator GenerateContentPackAsync(GetContentPackAsyncArgs args)
         {
@@ -48,7 +38,7 @@ namespace RichtofenSurvivor
             // Wait until content packs are loaded before registering hooks
             RoR2Application.onLoad += () =>
             {
-                DoublePointsBehavior.RegisterHooks();
+                PowerUpAssetLoadUp.loadPowerUpBehaviour();
             };
             args.ReportProgress(1f);
             yield break;
