@@ -1,7 +1,7 @@
 using RoR2;
 using RichtofenSurvivor;
 
-namespace DoublePoints
+namespace PowerUp
 {
 
     public class DoublePointsBehavior

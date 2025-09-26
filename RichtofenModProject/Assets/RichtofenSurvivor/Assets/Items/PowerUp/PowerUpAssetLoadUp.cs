@@ -1,7 +1,5 @@
 using RoR2;
 using RichtofenSurvivor;
-using InstantKill;
-using DoublePoints;
 
 public class PowerUpAssetLoadUp
 {
@@ -12,6 +10,7 @@ public class PowerUpAssetLoadUp
     private static BuffDef instantKillBuffDef;
     private static ItemDef fireSaleDef;
     private static BuffDef fireSaleBuffDef;
+    private static ItemDef nukeItemDef;
 
     public static void loadAssetstoBundle()
     {
@@ -22,13 +21,21 @@ public class PowerUpAssetLoadUp
         instantKillDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("InstantKillItem");
         fireSaleDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("FireSaleItem");
         fireSaleBuffDef = RichtofenSurvivorContent._myBundle.LoadAsset<BuffDef>("FireSaleBuff");
+        nukeItemDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("NukeItem");
 
-        RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { fireSaleDef });
-        RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { fireSaleBuffDef });
-        RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { doublePointsDef });
-        RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { doublePointsBuffDef });
-        RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { instantKillDef });
-        RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { instantKillBuffDef });
+        RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { 
+            nukeItemDef,
+            fireSaleDef,
+            doublePointsDef,
+            instantKillDef
+        });
+
+        RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { 
+            fireSaleBuffDef,
+            doublePointsBuffDef,
+            instantKillBuffDef
+        });
+
         RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemTierDefs.Add(new ItemTierDef[] { powerUpTier });
     }
 

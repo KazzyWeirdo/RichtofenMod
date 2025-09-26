@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace FireSale
+namespace PowerUp
 {
     public class FireSaleBehaviour
     {
