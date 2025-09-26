@@ -59,7 +59,10 @@ namespace PowerUp
 
             if (count > 0)
             {
-                self.AddTimedBuff(instantKillBuffDef, 30);
+                foreach (var body in CharacterBody.readOnlyInstancesList)
+                {
+                    if (body.isPlayerControlled) body.AddTimedBuff(instantKillBuffDef, 30);
+                }
                 self.inventory.RemoveItem(instantKillItemDef);
             }
             orig(self);

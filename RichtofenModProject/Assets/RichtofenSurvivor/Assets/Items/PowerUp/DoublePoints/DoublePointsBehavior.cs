@@ -34,7 +34,10 @@ namespace PowerUp
 
             if (count > 0)
             {
-                self.AddTimedBuff(doublePointsBuffDef, 30);
+                foreach (var body in CharacterBody.readOnlyInstancesList)
+                {
+                    if (body.isPlayerControlled) body.AddTimedBuff(doublePointsBuffDef, 30);
+                }
                 self.inventory.RemoveItem(doublePointsDef);
             }
             orig(self);
