@@ -19,7 +19,7 @@ MonoBehaviour:
   descriptionToken: 75% discount when buying for 20 seconds.
   loreToken: 
   unlockableDef: {fileID: 0}
-  pickupModelPrefab: {fileID: 0}
+  pickupModelPrefab: {fileID: 9076459379458539147, guid: 6e9d7b46a2d22fe4ea6b465f53ec2327, type: 3}
   pickupModelReference:
     m_AssetGUID: 
     m_SubObjectName: 

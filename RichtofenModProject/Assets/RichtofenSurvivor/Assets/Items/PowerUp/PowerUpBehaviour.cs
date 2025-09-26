@@ -9,13 +9,15 @@ public class PowerUpBehaviour
     public static ItemDef[] powerUpItemDefinitions =
     {
         RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem"),
-        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("InstantKillItem")
+        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("InstantKillItem"),
+        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("FireSaleItem")
     };
     
     public static void RegisterMainHooks()
     {
         DoublePoints.DoublePointsBehavior.RegisterHooks();
         InstantKill.InstantKillBehaviour.RegisterHooks();
+        FireSale.FireSaleBehaviour.RegisterHooks();
         GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
     }
 
@@ -41,7 +43,6 @@ public class PowerUpBehaviour
     private static ItemDef powerUpDropRandomizer()
     {
         int r = UnityEngine.Random.Range(0, powerUpItemDefinitions.Length);
-        Debug.Log($"Random value: {r}");
         return powerUpItemDefinitions[(r)];
     }
 
