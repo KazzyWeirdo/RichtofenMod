@@ -10,6 +10,8 @@ public class PowerUpAssetLoadUp
     private static BuffDef doublePointsBuffDef;
     private static ItemDef instantKillDef;
     private static BuffDef instantKillBuffDef;
+    private static ItemDef fireSaleDef;
+    private static BuffDef fireSaleBuffDef;
 
     public static void loadAssetstoBundle()
     {
@@ -18,7 +20,11 @@ public class PowerUpAssetLoadUp
         doublePointsDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("DoublePointsItem");
         instantKillBuffDef = RichtofenSurvivorContent._myBundle.LoadAsset<BuffDef>("InstantKillBuff");
         instantKillDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("InstantKillItem");
+        fireSaleDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("FireSaleItem");
+        fireSaleBuffDef = RichtofenSurvivorContent._myBundle.LoadAsset<BuffDef>("FireSaleBuff");
 
+        RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { fireSaleDef });
+        RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { fireSaleBuffDef });
         RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { doublePointsDef });
         RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { doublePointsBuffDef });
         RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { instantKillDef });
