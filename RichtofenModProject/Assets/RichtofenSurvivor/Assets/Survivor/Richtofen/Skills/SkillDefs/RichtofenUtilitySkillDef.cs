@@ -31,9 +31,9 @@ public static class RichtofenUtilitySkillDef
         mySkillDef.activationStateMachineName = "Weapon";
         mySkillDef.baseMaxStock = 1;
         mySkillDef.baseRechargeInterval = 0.5f;
-        mySkillDef.beginSkillCooldownOnSkillEnd = true;
+        mySkillDef.beginSkillCooldownOnSkillEnd = false;
         mySkillDef.canceledFromSprinting = false;
-        mySkillDef.cancelSprintingOnActivation = true;
+        mySkillDef.cancelSprintingOnActivation = false;
         mySkillDef.fullRestockOnAssign = true;
         mySkillDef.interruptPriority = InterruptPriority.Skill;
         mySkillDef.isCombatSkill = false;

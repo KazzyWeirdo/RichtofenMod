@@ -20,6 +20,7 @@ namespace RichtofenSurvivor.EntityStates
 
         public GameObject hitEffectPrefab = FireBarrage.hitEffectPrefab;
         public GameObject tracerEffectPrefab = FireBarrage.tracerEffectPrefab;
+        private readonly WeaponSniper weapon = new();
 
         public override void OnEnter()
         {
@@ -50,7 +51,7 @@ namespace RichtofenSurvivor.EntityStates
                     maxSpread = 0f,
                     bulletCount = 1U,
                     procCoefficient = 1f,
-                    damage = base.characterBody.damage * 8.5f,
+                    damage = base.characterBody.damage * weapon.Damage,
                     force = 3,
                     falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                     tracerEffectPrefab = tracerEffectPrefab,

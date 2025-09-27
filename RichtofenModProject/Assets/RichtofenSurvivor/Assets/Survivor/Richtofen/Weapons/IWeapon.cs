@@ -11,5 +11,10 @@ public interface IWeapon
     float FireRate { get; }
     float Damage { get; }
     Type WeaponState { get; }
-    void ReloadWeapon();
+    void ReloadWeapon()
+    {
+        if (CurrentAmmo > MaxAmmo) CurrentAmmo = MaxAmmo;
+        CurrentAmmo -= MagazineSize;
+        MagazineAmmo = MagazineSize;
+    }
 }

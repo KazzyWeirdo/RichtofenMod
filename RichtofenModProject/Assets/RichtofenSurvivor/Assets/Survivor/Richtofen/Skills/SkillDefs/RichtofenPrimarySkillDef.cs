@@ -11,11 +11,7 @@ using UnityEngine;
 
 public static class RichtofenPrimarySkillDef
 {
-    private static readonly Type[] value = new Type[] { typeof(Weapon1911), typeof(WeaponSniper) };
-    public static Type[] weapons = value;
-
-    public static Type activeWeapon = weapons[0];
-    public static Type secondaryWeapon = weapons[1];
+    
     public static SkillDef RichtofenPrimarySkills()
     {
         SkillFamily primary = RichtofenSurvivorContent._myBundle.LoadAsset<SkillFamily>("sfRichtofenPrimary");
@@ -56,9 +52,7 @@ public static class RichtofenPrimarySkillDef
 
         return mySkillDef;
     }
-    public static void SwapWeapons()
-    {
-        (activeWeapon, secondaryWeapon) = (secondaryWeapon, activeWeapon);
-    }
+
+    
 
 }

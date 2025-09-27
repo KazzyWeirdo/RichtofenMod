@@ -9,30 +9,36 @@ namespace RichtofenSurvivor.EntityStates
 {
     internal class ShootState : BaseState
     {
-        
-        private static readonly Dictionary<string, float> weaponDurations = new Dictionary<string, float>
-        {
-            { "TestPistolState", 1.5f },
-            { "TestSniperState", 3.0f }
-        };
-
-        
-        
-
+       
         public override void OnEnter()
         {
             base.OnEnter();
             //duration = weaponDurations[CommandoTestSkillDefs.activeWeapon.Name] / attackSpeedStat;
 
-            Chat.SendBroadcastChat(new SimpleChatMessage { baseToken = "<color=#e5eefc>{0}</color>", paramTokens = new[] { "shooting this: " + RichtofenPrimarySkillDef.activeWeapon.Name } });
-            EntityState nextState = (EntityState)System.Activator.CreateInstance(RichtofenPrimarySkillDef.activeWeapon);
+            Chat.SendBroadcastChat(new SimpleChatMessage { baseToken = "<color=#e5eefc>{0}</color>", paramTokens = new[] { "shooting this: " + WeaponInventory.activeWeapon.WeaponName } });
+            EntityState nextState = (EntityState)System.Activator.CreateInstance(WeaponInventory.activeWeapon.WeaponState);
             RichtofenSurvivorMain.LogInfo("fefe" + nextState.GetType());
 
-            
+            if (WeaponInventory.activeWeapon.MagazineAmmo != 0)
+            { 
+                WeaponInventory.activeWeapon.MagazineAmmo--;
+            }
+            else
+            {
+                if (WeaponInventory.activeWeapon.CurrentAmmo != 0)
+                {
+                    WeaponInventory.activeWeapon.ReloadWeapon();
+                    RichtofenSurvivorMain.LogInfo("reloading");
+                }
+                else
+                {
+                    RichtofenSurvivorMain.LogWarning("no ammo");
+                }
+            }
 
 
-            RichtofenSurvivorMain.LogInfo("active weapon ammo stuff: " + RichtofenPrimarySkillDef.activeWeapon);
-            
+                RichtofenSurvivorMain.LogInfo("active weapon ammo stuff: " + WeaponInventory.activeWeapon.CurrentAmmo + ", " + WeaponInventory.activeWeapon.MagazineAmmo);
+
             this.outer.SetNextState(nextState);
         }
 

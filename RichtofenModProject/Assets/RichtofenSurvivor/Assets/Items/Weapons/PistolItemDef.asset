@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1284244208, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: PistolItemDef
+  m_EditorClassIdentifier: 
+  deprecatedTier: 0
+  _itemTierDef: {fileID: 0}
+  nameToken: RICH_RICHTOFEN_PISTOL_NAME
+  pickupToken: RICH_RICHTOFEN_PISTOL_PICKUP
+  descriptionToken: RICH_RICHTOFEN_PISTOL_DESC
+  loreToken: RICH_RICHTOFEN_PISTOL_LORE
+  unlockableDef: {fileID: 0}
+  pickupModelPrefab: {fileID: 919132149155446097, guid: c828c414558bea348b51b746e4f629c2, type: 3}
+  pickupModelReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+  pickupIconSprite: {fileID: 21300000, guid: 31ad0cb17ee372b43a11d48deab9d332, type: 3}
+  isConsumed: 0
+  hidden: 0
+  canRemove: 1
+  tags: 
+  requiredExpansion: {fileID: 11400000, guid: 55a7a1327739de0479ddf0b0d6a212ad, type: 2}
