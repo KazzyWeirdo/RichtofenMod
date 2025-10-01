@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace FireSale
+namespace PowerUp
 {
     public class FireSaleBehaviour
     {
@@ -31,7 +31,10 @@ namespace FireSale
 
             if (count > 0)
             {
-                self.AddTimedBuff(fireSaleBuffDef, 20);
+                foreach (var body in CharacterBody.readOnlyInstancesList)
+                {
+                    if (body.isPlayerControlled) body.AddTimedBuff(fireSaleBuffDef, 20);
+                }
                 self.inventory.RemoveItem(fireSaleItemDef);
             }
             orig(self);

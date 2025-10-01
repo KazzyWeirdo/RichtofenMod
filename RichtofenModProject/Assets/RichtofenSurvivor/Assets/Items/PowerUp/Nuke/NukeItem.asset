@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1284244208, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+  m_Name: NukeItem
+  m_EditorClassIdentifier: 
+  deprecatedTier: 5
+  _itemTierDef: {fileID: 11400000, guid: 3fdb3d68d52ae9442bf58deca6af613e, type: 2}
+  nameToken: Nuke
+  pickupToken: Kills all normal enemies in the map, awards you with money.
+  descriptionToken: Kills all normal enemies in the map, awards you with money.
+  loreToken: 
+  unlockableDef: {fileID: 0}
+  pickupModelPrefab: {fileID: 765294405700482395, guid: ba02d558bd3856941a15f2c3ef0d6301, type: 3}
+  pickupModelReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+  pickupIconSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  isConsumed: 0
+  hidden: 0
+  canRemove: 1
+  tags: 
+  requiredExpansion: {fileID: 0}

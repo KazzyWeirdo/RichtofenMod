@@ -3,7 +3,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace InstantKill
+namespace PowerUp
 {
     public class InstantKillBehaviour
     {
@@ -59,7 +59,10 @@ namespace InstantKill
 
             if (count > 0)
             {
-                self.AddTimedBuff(instantKillBuffDef, 30);
+                foreach (var body in CharacterBody.readOnlyInstancesList)
+                {
+                    if (body.isPlayerControlled) body.AddTimedBuff(instantKillBuffDef, 30);
+                }
                 self.inventory.RemoveItem(instantKillItemDef);
             }
             orig(self);
