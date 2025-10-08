@@ -26,7 +26,8 @@ namespace PowerUp
                 {
                     if (body.isPlayerControlled)
                     {
-                        ResetSkillCooldowns(body);
+
+                        body.AddTimedBuff(RoR2Content.Buffs.NoCooldowns, 0.1f);
                         RestartUsedItems(body.master);
                     }
                 }
@@ -50,22 +51,6 @@ namespace PowerUp
 
                 inv.RemoveItem(itemIndex, count);
                 inv.GiveItem(itemIndex, count);
-            }
-        }
-
-        private static void ResetSkillCooldowns(CharacterBody body)
-        {
-            if (body && body.skillLocator)
-            {
-                foreach (var skill in body.skillLocator.allSkills)
-                {
-                    if (skill != null)
-                    {
-                        skill.Reset();
-                        skill.rechargeStopwatch = skill.finalRechargeInterval;
-                        skill.stock = skill.maxStock;
-                    }
-                }
             }
         }
     }
