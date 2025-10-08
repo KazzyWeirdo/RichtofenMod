@@ -11,7 +11,8 @@ public class PowerUpBehaviour
         RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("DoublePointsItem"),
         RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("InstantKillItem"),
         RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("FireSaleItem"),
-        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("NukeItem")
+        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("NukeItem"),
+        RichtofenSurvivorContent.readOnlyContentPack.itemDefs.Find("MaxAmmoItem")
     };
     
     public static void RegisterMainHooks()
@@ -20,6 +21,7 @@ public class PowerUpBehaviour
         PowerUp.InstantKillBehaviour.RegisterHooks();
         PowerUp.FireSaleBehaviour.RegisterHooks();
         PowerUp.NukeBehaviour.RegisterHooks();
+        PowerUp.MaxAmmoBehaviour.RegisterHooks();
         GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
     }
 

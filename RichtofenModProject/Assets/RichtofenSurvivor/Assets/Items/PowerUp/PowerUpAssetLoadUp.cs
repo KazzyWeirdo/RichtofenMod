@@ -11,6 +11,7 @@ public class PowerUpAssetLoadUp
     private static ItemDef fireSaleDef;
     private static BuffDef fireSaleBuffDef;
     private static ItemDef nukeItemDef;
+    private static ItemDef maxAmmoItemDef;
 
     public static void loadAssetstoBundle()
     {
@@ -22,12 +23,14 @@ public class PowerUpAssetLoadUp
         fireSaleDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("FireSaleItem");
         fireSaleBuffDef = RichtofenSurvivorContent._myBundle.LoadAsset<BuffDef>("FireSaleBuff");
         nukeItemDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("NukeItem");
+        maxAmmoItemDef = RichtofenSurvivorContent._myBundle.LoadAsset<ItemDef>("MaxAmmoItem");
 
         RichtofenSurvivorContent.RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { 
             nukeItemDef,
             fireSaleDef,
             doublePointsDef,
-            instantKillDef
+            instantKillDef,
+            maxAmmoItemDef
         });
 
         RichtofenSurvivorContent.RichtofenSurvivorContentPack.buffDefs.Add(new BuffDef[] { 
