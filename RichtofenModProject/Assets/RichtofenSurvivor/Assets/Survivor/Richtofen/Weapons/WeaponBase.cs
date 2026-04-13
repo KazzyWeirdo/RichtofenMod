@@ -40,7 +40,7 @@ public abstract class WeaponBase
     public float ReloadTime { get;  set; }
     public float FireRate { get;  set; }
     public float Damage { get;  set; }
-    public ItemDef weaponItem { get; set; }
+    public ItemDef WeaponItem { get; set; }
 
     public void ReloadWeapon()
     {

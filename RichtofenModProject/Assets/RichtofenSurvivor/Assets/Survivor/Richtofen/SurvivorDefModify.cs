@@ -20,8 +20,9 @@ public class SurvivorDefModify
         //    yield return null;
         //}
 
-        SkillDef sdRichtofenPrimary = RichtofenSurvivorContent._myBundle.LoadAsset<SkillDef>("sdRichtofenPrimary");
-        sdRichtofenPrimary = RichtofenPrimarySkillDef.RichtofenPrimarySkills();
+        //esto no tengo claro si realmente modifica el skilldef????
+        //SkillDef sdRichtofenPrimary = RichtofenSurvivorContent._myBundle.LoadAsset<SkillDef>("sdRichtofenPrimary");
+        //sdRichtofenPrimary = RichtofenPrimarySkillDef.RichtofenPrimarySkills();
 
         richtofenDef = RichtofenSurvivorContent._myBundle.LoadAsset<SurvivorDef>("RichtofenDef");
         GameObject richtofenPrefab = richtofenDef.bodyPrefab;

@@ -48,7 +48,9 @@ public static class RichtofenPrimarySkillDef
         mySkillDef.skillNameToken = "RICH_RICHTOFEN_PRIMARY_NAME";
         primary.variants = new SkillFamily.Variant[1] {new() { skillDef = mySkillDef } };
 
+        
 
+        
 
         return mySkillDef;
     }

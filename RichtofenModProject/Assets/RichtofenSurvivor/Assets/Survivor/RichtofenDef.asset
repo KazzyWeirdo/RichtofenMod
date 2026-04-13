@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RichtofenDef
   m_EditorClassIdentifier: 
   bodyPrefab: {fileID: 1366589617155794723, guid: 63b3a85483cf0db448ea810d8e77cd1d, type: 3}
-  displayPrefab: {fileID: 1366589617155794723, guid: 63b3a85483cf0db448ea810d8e77cd1d, type: 3}
+  displayPrefab: {fileID: 1366589617155794723, guid: d15e14d351ceb4647a69be9f667f93b5, type: 3}
   unlockableName: r34
   unlockableDef: {fileID: 0}
   displayNameToken: Richtofen

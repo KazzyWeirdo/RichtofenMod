@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1284244208, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-  m_Name: PistolItemDef
+  m_Name: SniperItemDef
   m_EditorClassIdentifier: 
   deprecatedTier: 0
   _itemTierDef: {fileID: 11400000, guid: 65b84a2152f8588459d4444fd628b85d, type: 2}
-  nameToken: RICH_RICHTOFEN_PISTOL_NAME
-  pickupToken: RICH_RICHTOFEN_PISTOL_PICKUP
-  descriptionToken: RICH_RICHTOFEN_PISTOL_DESC
-  loreToken: RICH_RICHTOFEN_PISTOL_LORE
+  nameToken: RICH_RICHTOFEN_SNIPER_NAME
+  pickupToken: RICH_RICHTOFEN_SNIPER_PICKUP
+  descriptionToken: RICH_RICHTOFEN_SNIPER_DESC
+  loreToken: RICH_RICHTOFEN_SNIPER_LORE
   unlockableDef: {fileID: 0}
-  pickupModelPrefab: {fileID: 919132149155446097, guid: c828c414558bea348b51b746e4f629c2, type: 3}
+  pickupModelPrefab: {fileID: 919132149155446097, guid: 4a2a5ead9a0e278428231c5f988b903e, type: 3}
   pickupModelReference:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
-  pickupIconSprite: {fileID: 21300000, guid: 31ad0cb17ee372b43a11d48deab9d332, type: 3}
+  pickupIconSprite: {fileID: 21300000, guid: 1431b7bc28bc9c646b0e270a18abfb4b, type: 3}
   isConsumed: 0
   hidden: 0
   canRemove: 1

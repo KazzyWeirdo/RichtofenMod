@@ -1,11 +1,12 @@
-using RoR2.ContentManagement;
-using UnityEngine;
+using R2API;
+using RichtofenSurvivor.EntityStates;
 using RoR2;
+using RoR2.ContentManagement;
+using RoR2.ExpansionManagement;
 using RoR2.Skills;
 using System.Collections;
-using RoR2.ExpansionManagement;
-using R2API;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 namespace RichtofenSurvivor
 {
@@ -27,6 +28,12 @@ namespace RichtofenSurvivor
                 args.ReportProgress(asyncOperation.progress);
                 yield return null;
             }
+
+            //manera moderna de anadir entitystates, al parecer no funciona bien con nuestra manera de usar contentpack
+            //ContentAddition.AddEntityState<TestPistolState>(out _);
+            //ContentAddition.AddEntityState<TestSniperState>(out _);
+            //ContentAddition.AddEntityState<ShootState>(out _);
+
             _myBundle = asyncOperation.assetBundle;
             _mySurvivor = _myBundle.LoadAsset<SurvivorDef>("RichtofenDef");
             ItemDef _myItem = _myBundle.LoadAsset<ItemDef>("PistolItemDef");
@@ -35,20 +42,31 @@ namespace RichtofenSurvivor
             GameObject _myPrefab = _myBundle.LoadAsset<GameObject>("RichtofenBody");
             _myPrefab.AddComponent<WeaponInventory>();
 
+            //la ultima vez no habia errores, si falta esto ahora siempre salta un error de que no state index; hay que anadir los entity states de esta forma
+            //y antes de inicializar las habilidades
+            RichtofenSurvivorContentPack.entityStateTypes.Add(new System.Type[]
+            {
+                typeof(TestPistolState), typeof(TestSniperState), typeof(ShootState), typeof(SwapState)
+            });
+
+            
+
             RichtofenPrimarySkillDef.RichtofenPrimarySkills();
+
+            
             RichtofenUtilitySkillDef.RichtofenUtilitySkills();
             var crosshair = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/CrosshairSimple.prefab").WaitForCompletion();
             var pod = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/SurvivorPod/PodPrefab.prefab").WaitForCompletion();
             var letssee = (CharacterBody)_mySurvivor.bodyPrefab.GetComponent("CharacterBody");
             var letssee2 = _mySurvivor.bodyPrefab.GetComponent<CharacterBody>();
 
-            
-            
+
+
 
 
             RichtofenSurvivorMain.LogInfo("testing rich: " + letssee + ", :" + letssee2);
 
-            RoR2.UI.CrosshairUtils.RequestOverrideForBody(letssee, crosshair, RoR2.UI.CrosshairUtils.OverridePriority.Sprint);
+            RoR2.UI.CrosshairUtils.RequestOverrideForBody(letssee2, crosshair, RoR2.UI.CrosshairUtils.OverridePriority.Sprint);
             //letssee._defaultCrosshairPrefab = crosshair;
             //_mySurvivor.bodyPrefab.GetComponent<CharacterBody>().preferredPodPrefab = pod;
             //GameObject body = PrefabUtility.LoadPrefabContents("Assets/RichtofenSurvivor/Assets/Survivor/Richtofen/RichtofenBody.prefab");
@@ -63,7 +81,11 @@ namespace RichtofenSurvivor
             RichtofenSurvivorContentPack.bodyPrefabs.Add(new GameObject[] { _myPrefab });
             RichtofenSurvivorContentPack.survivorDefs.Add(new SurvivorDef[] { _mySurvivor });
             RichtofenSurvivorContentPack.expansionDefs.Add(new ExpansionDef[] { expansionDef });
-            RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { _myItem });
+            ItemDef[] allItems = _myBundle.LoadAllAssets<ItemDef>();
+
+            RichtofenSurvivorContentPack.itemDefs.Add(allItems);
+            //RichtofenSurvivorContentPack.itemDefs.Add(new ItemDef[] { _myItem });
+            //esto creo que es antiguo, la nueva manera esta especificada en primaryskilldef
 
         }
         public IEnumerator GenerateContentPackAsync(GetContentPackAsyncArgs args)
