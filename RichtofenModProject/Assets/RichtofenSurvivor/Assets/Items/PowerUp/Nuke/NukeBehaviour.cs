@@ -1,5 +1,7 @@
 using RichtofenSurvivor;
 using RoR2;
+using System.Linq;
+using UnityEngine.Networking;
 
 namespace PowerUp
 {
@@ -16,26 +18,28 @@ namespace PowerUp
 
         private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            var count = self.inventory.GetItemCount(nukeItemDef);
+            orig(self);
 
-            if (count > 0)
+            if (!NetworkServer.active || self.inventory == null) return;
+
+            if (self.inventory.GetItemCount(nukeItemDef) <= 0) return;
+
+            self.inventory.RemoveItem(nukeItemDef);
+
+            foreach (var body in CharacterBody.readOnlyInstancesList.ToList())
             {
-                self.inventory.RemoveItem(nukeItemDef);
+                if (body == null)
+                    continue;
 
-                foreach (var body in CharacterBody.readOnlyInstancesList)
+                if (!body.isPlayerControlled && !body.isBoss && !body.isElite)
                 {
-                    if (!body.isPlayerControlled && !body.isBoss && !body.isElite)
-                    {
-                        body.healthComponent.Suicide();
-                    }
-
-                    if(body.isPlayerControlled)
-                    {
-                        body.master.GiveMoney((uint)Run.instance.GetDifficultyScaledCost(25));
-                    }
+                    if (body.healthComponent != null && body.healthComponent.alive) body.healthComponent.Suicide();
+                }
+                else if (body.isPlayerControlled && body.master != null)
+                {
+                    body.master.GiveMoney((uint)Run.instance.GetDifficultyScaledCost(25));
                 }
             }
-            orig(self);
         }
     }
 }
