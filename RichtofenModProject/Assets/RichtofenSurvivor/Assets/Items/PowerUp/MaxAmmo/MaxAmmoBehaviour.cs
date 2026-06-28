@@ -16,6 +16,8 @@ namespace PowerUp
 
         private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
+            orig(self);
+
             var count = self.inventory.GetItemCount(maxAmmoItemDef);
 
             if (count > 0)
@@ -26,13 +28,20 @@ namespace PowerUp
                 {
                     if (body.isPlayerControlled)
                     {
-
                         body.AddTimedBuff(RoR2Content.Buffs.NoCooldowns, 0.1f);
+                        clearCooldownBuffs(body);
                         RestartUsedItems(body.master);
                     }
                 }
             }
-            orig(self);
+        }
+
+        private static void clearCooldownBuffs(CharacterBody body)
+        {
+            foreach(BuffDef coolDownBuffDef in BuffCatalog.buffDefs)
+            {
+                if (coolDownBuffDef.isCooldown) body.ClearTimedBuffs(coolDownBuffDef);
+            }
         }
 
         private static void RestartUsedItems(CharacterMaster master)
