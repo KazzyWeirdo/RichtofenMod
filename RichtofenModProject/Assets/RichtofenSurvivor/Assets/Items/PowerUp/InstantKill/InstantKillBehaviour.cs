@@ -55,7 +55,7 @@ namespace PowerUp
 
         private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            var count = self.inventory.GetItemCount(instantKillItemDef);
+            var count = self.inventory.GetItemCountPermanent(instantKillItemDef);
 
             if (count > 0)
             {
@@ -63,7 +63,7 @@ namespace PowerUp
                 {
                     if (body.isPlayerControlled) body.AddTimedBuff(instantKillBuffDef, 30);
                 }
-                self.inventory.RemoveItem(instantKillItemDef);
+                self.inventory.RemoveItemPermanent(instantKillItemDef);
             }
             orig(self);
         }

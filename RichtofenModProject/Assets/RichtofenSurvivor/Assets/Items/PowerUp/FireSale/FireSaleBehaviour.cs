@@ -27,7 +27,7 @@ namespace PowerUp
 
         private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            var count = self.inventory.GetItemCount(fireSaleItemDef);
+            var count = self.inventory.GetItemCountPermanent(fireSaleItemDef);
 
             if (count > 0)
             {
@@ -35,7 +35,7 @@ namespace PowerUp
                 {
                     if (body.isPlayerControlled) body.AddTimedBuff(fireSaleBuffDef, 20);
                 }
-                self.inventory.RemoveItem(fireSaleItemDef);
+                self.inventory.RemoveItemPermanent(fireSaleItemDef);
             }
             orig(self);
         }

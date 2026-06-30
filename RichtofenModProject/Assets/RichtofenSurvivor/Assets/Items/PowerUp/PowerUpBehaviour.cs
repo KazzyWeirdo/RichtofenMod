@@ -38,9 +38,10 @@ public class PowerUpBehaviour
         if (Util.CheckRoll(probability, report.victimBody.master))
         {
             PickupDropletController.CreatePickupDroplet(
-                PickupCatalog.FindPickupIndex(powerUpDropRandomizer().itemIndex),
+                new UniquePickup(PickupCatalog.FindPickupIndex(powerUpDropRandomizer().itemIndex)),
                 transform.position,
-                transform.forward * 20f);
+                transform.forward * 20f,
+                false);
         }
     }
 

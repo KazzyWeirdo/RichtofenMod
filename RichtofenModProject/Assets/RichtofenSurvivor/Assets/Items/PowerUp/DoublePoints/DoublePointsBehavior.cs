@@ -30,7 +30,7 @@ namespace PowerUp
 
         private static void OnInventoryChangedHook(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            var count = self.inventory.GetItemCount(doublePointsDef);
+            var count = self.inventory.GetItemCountPermanent(doublePointsDef);
 
             if (count > 0)
             {
@@ -38,7 +38,7 @@ namespace PowerUp
                 {
                     if (body.isPlayerControlled) body.AddTimedBuff(doublePointsBuffDef, 30);
                 }
-                self.inventory.RemoveItem(doublePointsDef);
+                self.inventory.RemoveItemPermanent(doublePointsDef);
             }
             orig(self);
         }

@@ -19,6 +19,7 @@ MonoBehaviour:
   isDroppable: 0
   canScrap: 0
   canRestack: 0
+  canRebirth: 0
   pickupRules: 0
   highlightPrefab: {fileID: 7866509351698859190, guid: 88c4370bd3082424f87c70335cc2fa00, type: 3}
-  dropletDisplayPrefab: {fileID: 7866509351698859190, guid: 88c4370bd3082424f87c70335cc2fa00, type: 3}
+  dropletDisplayPrefab: {fileID: 3399215942086746671, guid: f2ff7a05b799d6842863dbf041030be7, type: 3}
