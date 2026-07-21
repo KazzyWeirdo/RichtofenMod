@@ -11,7 +11,7 @@ public class Weapon1911 : WeaponBase
         MagazineSize = 8;
         MagazineAmmo = MagazineSize;
         ReloadTime = 2.5f;
-        FireRate = 0.3f;
+        FireRate = 0.41f;
         Damage = 1000f;
         //Damage = 1.1f; //110% damage
         WeaponState = typeof(TestPistolState);

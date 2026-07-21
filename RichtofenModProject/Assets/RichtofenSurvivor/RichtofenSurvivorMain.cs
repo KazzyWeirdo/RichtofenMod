@@ -1,6 +1,8 @@
 using BepInEx;
+using BepInEx.Configuration;
 using System.IO;
 using UnityEngine;
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
 namespace RichtofenSurvivor
 {
     #region Dependencies
@@ -28,11 +30,14 @@ namespace RichtofenSurvivor
         internal static AssetBundle assetBundle { get; private set; }
         internal static string assetBundleDir => Path.Combine(Path.GetDirectoryName(pluginInfo.Location), "RichtofenSurvivorAssets");
 
+        public static ConfigEntry<KeyboardShortcut> reloadKey;
+
         private void Awake()
         {
             instance = this;
             pluginInfo = Info;
             new RichtofenSurvivorContent();
+            reloadKey = Config.Bind("Controls", "Swap Weapon", new KeyboardShortcut(KeyCode.E), "Reload weapon key for Richtofen mod.");
         }
         internal static void LogFatal(object data)
         {

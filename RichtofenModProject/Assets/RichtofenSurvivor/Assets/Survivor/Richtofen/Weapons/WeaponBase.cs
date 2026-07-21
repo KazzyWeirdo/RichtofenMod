@@ -1,4 +1,5 @@
 using EntityStates;
+using RichtofenSurvivor;
 using RoR2;
 using System;
 using UnityEngine;
@@ -44,15 +45,21 @@ public abstract class WeaponBase
 
     public void ReloadWeapon()
     {
+        var ammoToReload = MagazineSize - MagazineAmmo;
+        if (MagazineAmmo == MagazineSize) { 
+            RichtofenSurvivorMain.LogWarning("mag full, NOT reloading");
+            return; }
+        if(CurrentAmmo==0) { RichtofenSurvivorMain.LogWarning("no ammo, NOT reloading"); return; }
+        // ammo reserve nunca mayor que maxammo
         if (CurrentAmmo > MaxAmmo) CurrentAmmo = MaxAmmo;
-        if (CurrentAmmo < MagazineSize)
+        if (CurrentAmmo < ammoToReload)
         {
-            MagazineAmmo = CurrentAmmo;
+            MagazineAmmo += CurrentAmmo;
             CurrentAmmo = 0;
             return;
         }
-        MagazineAmmo = MagazineSize;
-        CurrentAmmo -= MagazineSize;
+        CurrentAmmo -= ammoToReload;
+        MagazineAmmo += ammoToReload;
     }
 
 }

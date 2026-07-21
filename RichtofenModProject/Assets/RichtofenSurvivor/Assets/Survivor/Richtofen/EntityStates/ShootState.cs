@@ -19,25 +19,30 @@ namespace RichtofenSurvivor.EntityStates
             EntityState nextState = (EntityState)System.Activator.CreateInstance(WeaponInventory.activeWeapon.WeaponState);
             RichtofenSurvivorMain.LogInfo("fefe" + nextState.GetType());
 
+            RichtofenSurvivorMain.LogInfo("ammo before " + WeaponInventory.activeWeapon.CurrentAmmo + ", " + WeaponInventory.activeWeapon.MagazineAmmo);
+
+
             if (WeaponInventory.activeWeapon.MagazineAmmo != 0)
             { 
                 WeaponInventory.activeWeapon.MagazineAmmo--;
-            }
-            else
-            {
-                if (WeaponInventory.activeWeapon.CurrentAmmo != 0)
+                if(WeaponInventory.activeWeapon.MagazineAmmo == 0)
                 {
-                    WeaponInventory.activeWeapon.ReloadWeapon();
-                    RichtofenSurvivorMain.LogInfo("reloading");
-                }
-                else
-                {
-                    RichtofenSurvivorMain.LogWarning("no ammo");
+                    if(WeaponInventory.activeWeapon.CurrentAmmo != 0)
+                    {
+                        //insertar mierda para animacion para recargar etc
+                        WeaponInventory.activeWeapon.ReloadWeapon();
+                        RichtofenSurvivorMain.LogInfo("reloading");
+                    }
+                    else
+                    {
+                        RichtofenSurvivorMain.LogWarning("no ammo");
+                    }
                 }
             }
+            
 
 
-                RichtofenSurvivorMain.LogInfo("active weapon ammo stuff: " + WeaponInventory.activeWeapon.CurrentAmmo + ", " + WeaponInventory.activeWeapon.MagazineAmmo);
+                RichtofenSurvivorMain.LogInfo("ammo after " + WeaponInventory.activeWeapon.CurrentAmmo + ", " + WeaponInventory.activeWeapon.MagazineAmmo);
 
             this.outer.SetNextState(nextState);
         }

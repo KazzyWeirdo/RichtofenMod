@@ -1,37 +1,27 @@
-using RoR2;
+using R2API;
 using RichtofenSurvivor;
+using RoR2;
+using RoR2.Skills;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using R2API;
-using RoR2.Skills;
+using UnityEngine.AddressableAssets;
 
 public class SurvivorDefModify
 {
     //thunderkit no deja modificar el survivor def directamente
     private static SurvivorDef richtofenDef;
     
-    public static GameObject ModifySurvivorDef()
+    private static void CharacterBody_Start(On.RoR2.CharacterBody.orig_Start orig, RoR2.CharacterBody self)
     {
-        //var asyncOperation = AssetBundle.LoadFromFileAsync(RichtofenSurvivorMain.assetBundleDir);
-
-        //while (!asyncOperation.isDone)
-        //{ 
-        //    yield return null;
-        //}
-
-        //esto no tengo claro si realmente modifica el skilldef????
-        //SkillDef sdRichtofenPrimary = RichtofenSurvivorContent._myBundle.LoadAsset<SkillDef>("sdRichtofenPrimary");
-        //sdRichtofenPrimary = RichtofenPrimarySkillDef.RichtofenPrimarySkills();
-
-        richtofenDef = RichtofenSurvivorContent._myBundle.LoadAsset<SurvivorDef>("RichtofenDef");
-        GameObject richtofenPrefab = richtofenDef.bodyPrefab;
-        //GenericSkill richtofenPrimary = richtofenPrefab.GetComponent<SkillLocator>();
-
-        //richtofenPrefab.GetComponent<SkillLocator>().primary = RichtofenPrimarySkillDef.RichtofenPrimarySkills();
-
-        return richtofenPrefab;
-
+        orig(self);
+        if (self.bodyIndex != BodyCatalog.FindBodyIndex("RichtofenBody")) return;
+        GameObject crosshair = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/StandardCrosshair.prefab").WaitForCompletion();
+        RoR2.UI.CrosshairUtils.RequestOverrideForBody(self, crosshair, RoR2.UI.CrosshairUtils.OverridePriority.PrioritySkill);
+    }
+    public static void ModifySurvivorDef()
+    {
+        On.RoR2.CharacterBody.Start += CharacterBody_Start;
     }
     
 }

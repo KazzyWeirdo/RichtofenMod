@@ -29,6 +29,7 @@ namespace RichtofenSurvivor
                 yield return null;
             }
 
+            GameObject crosshair = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/CrosshairSimple.prefab").WaitForCompletion();
             //manera moderna de anadir entitystates, al parecer no funciona bien con nuestra manera de usar contentpack
             //ContentAddition.AddEntityState<TestPistolState>(out _);
             //ContentAddition.AddEntityState<TestSniperState>(out _);
@@ -41,42 +42,24 @@ namespace RichtofenSurvivor
             //Write code here to initialize your mod post assetbundle load
             GameObject _myPrefab = _myBundle.LoadAsset<GameObject>("RichtofenBody");
             _myPrefab.AddComponent<WeaponInventory>();
+            
+
 
             //la ultima vez no habia errores, si falta esto ahora siempre salta un error de que no state index; hay que anadir los entity states de esta forma
             //y antes de inicializar las habilidades
             RichtofenSurvivorContentPack.entityStateTypes.Add(new System.Type[]
             {
-                typeof(TestPistolState), typeof(TestSniperState), typeof(ShootState), typeof(SwapState)
+                typeof(TestPistolState), typeof(TestSniperState), typeof(ShootState), typeof(SwapState), typeof(TestShotgunState), typeof(TestRifleState), typeof(TestRaygunState)
             });
 
-            
 
+            
             RichtofenPrimarySkillDef.RichtofenPrimarySkills();
-
-            
             RichtofenUtilitySkillDef.RichtofenUtilitySkills();
-            var crosshair = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/CrosshairSimple.prefab").WaitForCompletion();
+
+
             var pod = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/SurvivorPod/PodPrefab.prefab").WaitForCompletion();
-            var letssee = (CharacterBody)_mySurvivor.bodyPrefab.GetComponent("CharacterBody");
-            var letssee2 = _mySurvivor.bodyPrefab.GetComponent<CharacterBody>();
-
-
-
-
-
-            RichtofenSurvivorMain.LogInfo("testing rich: " + letssee + ", :" + letssee2);
-
-            RoR2.UI.CrosshairUtils.RequestOverrideForBody(letssee2, crosshair, RoR2.UI.CrosshairUtils.OverridePriority.Sprint);
-            //letssee._defaultCrosshairPrefab = crosshair;
-            //_mySurvivor.bodyPrefab.GetComponent<CharacterBody>().preferredPodPrefab = pod;
-            //GameObject body = PrefabUtility.LoadPrefabContents("Assets/RichtofenSurvivor/Assets/Survivor/Richtofen/RichtofenBody.prefab");
-            //CharacterBody rBody = body.GetComponent<CharacterBody>();
-            //CharacterBody duplicate = GameObject.Instantiate(rBody);
-            //GameObject.Destroy(rBody);
-            //body.AddComponent(duplicate);
-
-            //var _richtofenPrefab = SurvivorDefModify.ModifySurvivorDef();
-            //_mySurvivor.bodyPrefab = _richtofenPrefab;
+            
 
             RichtofenSurvivorContentPack.bodyPrefabs.Add(new GameObject[] { _myPrefab });
             RichtofenSurvivorContentPack.survivorDefs.Add(new SurvivorDef[] { _mySurvivor });
@@ -98,6 +81,7 @@ namespace RichtofenSurvivor
         {
             RoR2Application.onLoad += () =>
             {
+                SurvivorDefModify.ModifySurvivorDef();
                 WeaponInventory.RegisterInventoryHooks();
             };
             args.ReportProgress(1f);

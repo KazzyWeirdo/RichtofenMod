@@ -3,6 +3,7 @@ using RoR2;
 using RoR2.ContentManagement;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public static class WeaponItemDictionary
@@ -11,6 +12,7 @@ public static class WeaponItemDictionary
     
     public static void Init()
     {
+        if(wepItemDic.Any()) return;
         var contentPack = RichtofenSurvivorContent.readOnlyContentPack;
         wepItemDic.Add(contentPack.itemDefs.Find("PistolItemDef"), typeof(Weapon1911));
         wepItemDic.Add(contentPack.itemDefs.Find("SniperItemDef"), typeof(WeaponSniper));
